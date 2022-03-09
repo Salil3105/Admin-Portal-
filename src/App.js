@@ -4,33 +4,36 @@ import Signup from './Signup'
 import Login from './Login'
 import Home from './Home'
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router,
+         Routes,
+         Route,
+         Link,
+         Navigate,
+         Outlet,
+         useParams,
+         NavLink,
+         useLocation,
+         useNavigate
+} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
+
       <Router>
-        <Switch>
+        <Routes>
 
-          {/* Login  */}
-          <Route exact path="/login" component={Login}>
-            <Login />
-          </Route>
+            {/* Login  */}
+            <Route path="/login" element={<Login />} />
 
-          {/* Home  */}
-          <Route exact path="/home" component={() => {
-            <Home authorized={true} />
-          }
-          }>
-          </Route>
+            <Route path="/" element={<Navigate replace to="/home" />} />
 
-        </Switch>
+            {/* Home  */}
+            <Route path="/home" element={<Home />} />
+
+        </Routes>
       </Router>
+
     </div>
   );
 }

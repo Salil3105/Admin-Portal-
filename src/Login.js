@@ -1,17 +1,22 @@
 import React from 'react'
+import Home from '../src/Home'
 import './Login.css'
 import googleIcon from './images/googleIcon.svg'
 import facebookIcon from './images/facebookIcon.svg'
 import twitterIcon from './images/twitterIcon.svg'
 
-// import {
-//     BrowserRouter as Router,
-//     Switch,
-//     Route,
-//     Link
-// } from "react-router-dom";
+import { BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    Navigate,
+    Outlet,
+    useParams,
+    NavLink,
+    useLocation,
+    useNavigate
+} from 'react-router-dom';
 
-import { useHistory } from 'react-router-dom'
 
 
 function Login() {
@@ -54,14 +59,12 @@ const FormInput = (props) => {
 }
 
 const FormButton = (props) => {
-    let history = useHistory();
+    const navigate = useNavigate();
     return (
         <div id="button" className="row">
-            <button
-                onClick={() => {
-                    history.push('/home')
-                }}
-            >{props.title}</button>
+            <button onClick={()=>{
+                navigate('/home')
+            }}>{props.title}</button>
         </div>
     );
 }
@@ -69,7 +72,7 @@ const FormButton = (props) => {
 const OtherMethods = (props) => {
     return (
         <div id="alternativeLogin">
-            <label>Or sign in with:</label>
+            <label>Or sign up with:</label>
             <div id="iconGroup">
                 <Facebook img={facebookIcon} found={"image not found"} />
                 <Twitter img={twitterIcon} found={"image not found"} />
